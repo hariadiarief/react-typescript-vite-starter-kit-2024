@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './base/mixins', './base/reset';
+
+// PAGE
+@import './pages/home', './pages/about';
+
+// COMPONENT
+@import './components/container', './components/layout';
