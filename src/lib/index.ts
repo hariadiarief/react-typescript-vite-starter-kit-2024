@@ -1,1 +1,1 @@
-export * from './WindowDimention'
+export * from './useWindowDimention' 

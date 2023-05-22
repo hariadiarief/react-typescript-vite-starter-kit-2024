@@ -2,7 +2,7 @@ import { lazy, Suspense } from 'react'
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom'
 
 // LAYOUT
-const Layout = lazy(() => import('components/Layout'))
+const Layout = lazy(() => import('components/layout'))
 
 // PAGE
 const Home = lazy(() => import('pages/home'))

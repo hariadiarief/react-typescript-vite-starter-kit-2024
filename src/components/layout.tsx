@@ -1,26 +1,57 @@
 import { Outlet } from 'react-router-dom'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import { ReactComponent as IconMenu } from 'assets/menu.svg'
 import { ReactComponent as IconMenuOpen } from 'assets/menu-open.svg'
-import { WindowDimensions } from 'lib'
+import { useWindowDimention } from 'lib'
 
 export default function Layout() {
-    let { width } = WindowDimensions()
+    let { width } = useWindowDimention()
+    const myRef = useRef<any>()
+
     const [isMobileNavShow, setIsMobileNavShow] = useState<Boolean | null>(null)
+    const [positionScrollY, setPositionScrollY] = useState<number>(0)
 
     useEffect(() => {
-        setIsMobileNavShow(width >= 768)
+        setIsMobileNavShow(width >= 768) // 768px : Medium devices base on bootstrap
     }, [width])
+
+    const onScroll = (e: any) => {
+        setPositionScrollY(window.scrollY)
+
+        if (window.scrollY === 0) {
+            // top of page condition
+            myRef.current.style.top = '0px'
+            myRef.current.style.boxShadow = 'none'
+        } else if (positionScrollY > myRef.current.clientHeight) {
+            // scrolled condition
+            if (positionScrollY > window.scrollY) {
+                // scrolling top
+                myRef.current.style.top = '0px'
+                myRef.current.style.boxShadow = `-0px 5px 5px -5px rgba(0, 0, 0, 0.75)`
+            } else {
+                // scrolling down
+                myRef.current.style.top = `-${myRef.current.clientHeight}px`
+                myRef.current.style.boxShadow = 'none'
+            }
+        }
+    }
+    useEffect(() => {
+        window.addEventListener('scroll', onScroll)
+        return () => window.removeEventListener('scroll', onScroll)
+    }, [positionScrollY])
 
     return (
         <div className='layout'>
-            <nav className='layout__header'>{renderMenu()}</nav>
+            <nav ref={myRef} className='layout__header'>
+                {renderMenu()}
+            </nav>
             <main>
-                {' '}
-                <Outlet />
+                <div>
+                    <Outlet />
+                </div>
             </main>
         </div>
     )
@@ -28,6 +59,7 @@ export default function Layout() {
     function renderMenu() {
         return (
             <>
+                {/* menu for mobile only */}
                 <div className='layout__header__menu-btn'>
                     <i onClick={() => setIsMobileNavShow(!isMobileNavShow)}>{isMobileNavShow ? <IconMenuOpen /> : <IconMenu />}</i>
                 </div>
