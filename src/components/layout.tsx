@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 
 import { ReactComponent as IconMenu } from 'assets/menu.svg'
 import { ReactComponent as IconMenuOpen } from 'assets/menu-open.svg'
-import { useWindowDimention } from 'lib'
+import { useWindowDimention } from 'hook'
 
 export default function Layout() {
     let { width } = useWindowDimention()
