@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 
 type windowSizeType = {
-    width: Number
-    height: Number
+    width: number
+    height: number
 }
 
 export const useWindowDimention = () => {

@@ -8,17 +8,17 @@ import { ReactComponent as IconMenuOpen } from 'assets/menu-open.svg'
 import { useWindowDimention } from 'hook'
 
 export default function Layout() {
-    let { width } = useWindowDimention()
+    const { width } = useWindowDimention()
     const myRef = useRef<any>()
 
-    const [isMobileNavShow, setIsMobileNavShow] = useState<Boolean | null>(null)
+    const [isMobileNavShow, setIsMobileNavShow] = useState<boolean | null>(null)
     const [positionScrollY, setPositionScrollY] = useState<number>(0)
 
     useEffect(() => {
         setIsMobileNavShow(width >= 768) // 768px : Medium devices base on bootstrap
     }, [width])
 
-    const onScroll = (e: any) => {
+    const onScroll = () => {
         setPositionScrollY(window.scrollY)
 
         if (window.scrollY === 0) {
@@ -67,13 +67,10 @@ export default function Layout() {
                     <NavLink to='/' className='layout__header__navigation'>
                         <img className='layout__header__navigation--logo' src={require('assets/logo.png')} alt='' />
                     </NavLink>
-                    <NavLink to='/' className={({ isActive, isPending }) => (isActive ? 'layout__header__navigation--active' : 'layout__header__navigation')}>
+                    <NavLink to='/' className={({ isActive }) => (isActive ? 'layout__header__navigation--active' : 'layout__header__navigation')}>
                         Home
                     </NavLink>
-                    <NavLink
-                        to='/about'
-                        className={({ isActive, isPending }) => (isActive ? 'layout__header__navigation--active' : 'layout__header__navigation')}
-                    >
+                    <NavLink to='/about' className={({ isActive }) => (isActive ? 'layout__header__navigation--active' : 'layout__header__navigation')}>
                         About
                     </NavLink>
                 </div>
