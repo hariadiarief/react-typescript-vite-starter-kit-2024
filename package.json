@@ -61,7 +61,12 @@
         "typescript": "^5.0.4"
     },
     "lint-staged": {
-        "*.{tsx,ts}": "eslint --cache --fix",
-        "*.{js,tsx,ts,css,md}": "prettier --write --ignore-unkown"
+        "**/*.{js,jsx,ts,tsx}": [
+            "eslint --cache --fix",
+            "prettier -w"
+        ],
+        "**/*.{json,css,scss,md,webmanifest}": [
+            "prettier -w"
+        ]
     }
 }
