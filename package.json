@@ -62,7 +62,7 @@
     },
     "lint-staged": {
         "**/*.{js,jsx,ts,tsx}": [
-            "eslint --cache --fix",
+            "eslint  --fix",
             "prettier -w"
         ],
         "**/*.{json,css,scss,md,webmanifest}": [
