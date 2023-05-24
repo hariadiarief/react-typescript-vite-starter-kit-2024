@@ -25,7 +25,7 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "lint": "eslint src --ext .tsx,.ts",
-        "lint:fix": "eslint src --fix" 
+        "lint:fix": "eslint src --fix"
     },
     "eslintConfig": {
         "extends": [
@@ -53,6 +53,7 @@
         "eslint-plugin-n": "^15.7.0",
         "eslint-plugin-promise": "^6.1.1",
         "eslint-plugin-react": "^7.32.2",
+        "prettier": "^2.8.8",
         "tailwindcss": "^3.3.2",
         "typescript": "^5.0.4"
     }
