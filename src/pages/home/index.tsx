@@ -3,17 +3,17 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Button, Spin } from 'antd'
 
-type IpokemonList = {
+interface IpokemonList {
     isLoading: boolean
 
     isLoadingMore: boolean
-    isHasMore: boolean
+    isHasMore: string | null
     offset: number
     limit: number
 
     items: Ipokemon[]
 }
-type Ipokemon = {
+interface Ipokemon {
     name: string
     url: string
 }
@@ -22,7 +22,7 @@ export default function Home() {
     const [pokemonList, setPokemonList] = useState<IpokemonList>({
         isLoading: false,
         isLoadingMore: false,
-        isHasMore: false,
+        isHasMore: null,
         offset: 0,
         limit: 20,
         items: [],
@@ -33,15 +33,19 @@ export default function Home() {
             .get(
                 `https://pokeapi.co/api/v2/pokemon?limit=${pokemonList.limit}&offset=${pokemonList.offset}}`
             )
-            .then((response) =>
+            .then((response) => {
                 setPokemonList({
                     ...pokemonList,
-                    isHasMore: !!response.data.next,
+                    isHasMore: response.data.next,
+                    isLoadingMore: false,
+                    isLoading: false,
                     items: pokemonList.items.concat(response.data.results),
                     offset: pokemonList.offset + pokemonList.limit,
-                    isLoadingMore: false,
                 })
-            )
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
     useEffect(fethPokemon, [])
 

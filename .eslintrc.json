@@ -10,21 +10,37 @@
     },
     "overrides": [],
     "parserOptions": {
+        "project": "./tsconfig.json",
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
     "parser": "@typescript-eslint/parser",
     "plugins": ["@typescript-eslint", "react", "react-hooks"],
     "extends": [
+        "standard-with-typescript",
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:react/recommended",
-        "plugin:react-hooks/recommended"
+        "plugin:react-hooks/recommended",
+        "plugin:prettier/recommended"
     ],
     "rules": {
         // Atur aturan linting sesuai kebutuhan Anda
         "react/react-in-jsx-scope": "off",
         "react/jsx-uses-react": "off",
-        "prefer-spread": ["off"]
+        "prefer-spread": ["off"],
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "import/prefer-default-export": "off",
+        "react/prop-types": "off",
+        "@typescript-eslint/strict-boolean-expressions": [
+            "error",
+            {
+                "allowNullableObject": true,
+                "allowNullableBoolean": true,
+                "allowNullableString": true
+            }
+        ]
     }
 }

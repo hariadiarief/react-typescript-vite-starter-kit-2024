@@ -6,11 +6,11 @@ import {
 } from 'react-router-dom'
 
 // LAYOUT
-const Layout = lazy(() => import('components/layout'))
+const Layout = lazy(async () => await import('components/layout'))
 
 // PAGE
-const Home = lazy(() => import('pages/home'))
-const About = lazy(() => import('pages/about'))
+const Home = lazy(async () => await import('pages/home'))
+const About = lazy(async () => await import('pages/about'))
 
 export const publicRoutes = createBrowserRouter(
     createRoutesFromElements(

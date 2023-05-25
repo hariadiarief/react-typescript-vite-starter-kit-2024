@@ -1,7 +1,6 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet, NavLink } from 'react-router-dom'
 
 import { useEffect, useRef, useState } from 'react'
-import { NavLink } from 'react-router-dom'
 
 import { ReactComponent as IconMenu } from 'assets/menu.svg'
 import { ReactComponent as IconMenuOpen } from 'assets/menu-open.svg'
@@ -9,7 +8,7 @@ import { useWindowDimention } from 'hook'
 
 export default function Layout() {
     const { width } = useWindowDimention()
-    const myRef = useRef<any>()
+    const myRef = useRef<HTMLDivElement>(null)
 
     const [isMobileNavShow, setIsMobileNavShow] = useState<boolean | null>(null)
     const [positionScrollY, setPositionScrollY] = useState<number>(0)
@@ -21,33 +20,38 @@ export default function Layout() {
     const onScroll = () => {
         setPositionScrollY(window.scrollY)
 
-        if (window.scrollY === 0) {
-            // top of page condition
-            myRef.current.style.top = '0px'
-            myRef.current.style.boxShadow = 'none'
-        } else if (positionScrollY > myRef.current.clientHeight) {
-            // scrolled condition
-            if (positionScrollY > window.scrollY) {
-                // scrolling top
+        if (myRef.current) {
+            if (window.scrollY === 0) {
+                // top of page condition
                 myRef.current.style.top = '0px'
-                myRef.current.style.boxShadow = `-0px 5px 5px -5px rgba(0, 0, 0, 0.75)`
-            } else {
-                // scrolling down
-                myRef.current.style.top = `-${myRef.current.clientHeight}px`
                 myRef.current.style.boxShadow = 'none'
+            } else if (positionScrollY > myRef.current.clientHeight) {
+                // scrolled condition
+                if (positionScrollY > window.scrollY) {
+                    // scrolling top
+                    myRef.current.style.top = '0px'
+                    myRef.current.style.boxShadow =
+                        '-0px 5px 5px -5px rgba(0, 0, 0, 0.75)'
+                } else {
+                    // scrolling down
+                    myRef.current.style.top = `-${myRef.current.clientHeight}px`
+                    myRef.current.style.boxShadow = 'none'
+                }
             }
         }
     }
     useEffect(() => {
         window.addEventListener('scroll', onScroll)
-        return () => window.removeEventListener('scroll', onScroll)
+        return () => {
+            window.removeEventListener('scroll', onScroll)
+        }
     }, [positionScrollY])
 
     return (
         <div className='layout'>
-            <nav ref={myRef} className='layout__header'>
+            <div ref={myRef} className='layout__header'>
                 {renderMenu()}
-            </nav>
+            </div>
             <main>
                 <div>
                     <Outlet />
@@ -61,7 +65,11 @@ export default function Layout() {
             <>
                 {/* menu for mobile only */}
                 <div className='layout__header__menu-btn'>
-                    <i onClick={() => setIsMobileNavShow(!isMobileNavShow)}>
+                    <i
+                        onClick={() => {
+                            setIsMobileNavShow(!isMobileNavShow)
+                        }}
+                    >
                         {isMobileNavShow ? <IconMenuOpen /> : <IconMenu />}
                     </i>
                 </div>
