@@ -29,15 +29,19 @@ export default function Home() {
     })
 
     const fethPokemon = () => {
-        axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${pokemonList.limit}&offset=${pokemonList.offset}}`).then((response) =>
-            setPokemonList({
-                ...pokemonList,
-                isHasMore: !!response.data.next,
-                items: pokemonList.items.concat(response.data.results),
-                offset: pokemonList.offset + pokemonList.limit,
-                isLoadingMore: false,
-            })
-        )
+        axios
+            .get(
+                `https://pokeapi.co/api/v2/pokemon?limit=${pokemonList.limit}&offset=${pokemonList.offset}}`
+            )
+            .then((response) =>
+                setPokemonList({
+                    ...pokemonList,
+                    isHasMore: !!response.data.next,
+                    items: pokemonList.items.concat(response.data.results),
+                    offset: pokemonList.offset + pokemonList.limit,
+                    isLoadingMore: false,
+                })
+            )
     }
     useEffect(fethPokemon, [])
 
@@ -56,11 +60,17 @@ export default function Home() {
                     ? renderLoader()
                     : pokemonList.items.map((pokemon, index) => {
                           return (
-                              <Link className='home__grid__item' to={`/pokemon/${pokemon.name}`} key={index}>
+                              <Link
+                                  className='home__grid__item'
+                                  to={`/pokemon/${pokemon.name}`}
+                                  key={index}
+                              >
                                   <img
                                       alt={pokemon.name}
                                       className='home__grid__item__image'
-                                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`}
+                                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+                                          index + 1
+                                      }.png`}
                                       onError={({ currentTarget }) => {
                                           currentTarget.src = require('assets/broken.png')
                                       }}
@@ -69,7 +79,11 @@ export default function Home() {
                               </Link>
                           )
                       })}
-                <>{pokemonList.items.length > 0 && pokemonList.isLoadingMore ? renderLoader() : null}</>
+                <>
+                    {pokemonList.items.length > 0 && pokemonList.isLoadingMore
+                        ? renderLoader()
+                        : null}
+                </>
             </div>
             <Button type='primary' onClick={loadMore}>
                 Load More

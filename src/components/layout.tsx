@@ -61,16 +61,43 @@ export default function Layout() {
             <>
                 {/* menu for mobile only */}
                 <div className='layout__header__menu-btn'>
-                    <i onClick={() => setIsMobileNavShow(!isMobileNavShow)}>{isMobileNavShow ? <IconMenuOpen /> : <IconMenu />}</i>
+                    <i onClick={() => setIsMobileNavShow(!isMobileNavShow)}>
+                        {isMobileNavShow ? <IconMenuOpen /> : <IconMenu />}
+                    </i>
                 </div>
-                <div className='layout__header__navigations' style={isMobileNavShow === true ? { display: 'flex' } : { display: 'none' }}>
+                <div
+                    className='layout__header__navigations'
+                    style={
+                        isMobileNavShow === true
+                            ? { display: 'flex' }
+                            : { display: 'none' }
+                    }
+                >
                     <NavLink to='/' className='layout__header__navigation'>
-                        <img className='layout__header__navigation--logo' src={require('assets/logo.png')} alt='' />
+                        <img
+                            className='layout__header__navigation--logo'
+                            src={require('assets/logo.png')}
+                            alt=''
+                        />
                     </NavLink>
-                    <NavLink to='/' className={({ isActive }) => (isActive ? 'layout__header__navigation--active' : 'layout__header__navigation')}>
+                    <NavLink
+                        to='/'
+                        className={({ isActive }) =>
+                            isActive
+                                ? 'layout__header__navigation--active'
+                                : 'layout__header__navigation'
+                        }
+                    >
                         Home
                     </NavLink>
-                    <NavLink to='/about' className={({ isActive }) => (isActive ? 'layout__header__navigation--active' : 'layout__header__navigation')}>
+                    <NavLink
+                        to='/about'
+                        className={({ isActive }) =>
+                            isActive
+                                ? 'layout__header__navigation--active'
+                                : 'layout__header__navigation'
+                        }
+                    >
                         About
                     </NavLink>
                 </div>
