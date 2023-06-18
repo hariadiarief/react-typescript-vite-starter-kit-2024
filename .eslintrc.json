@@ -41,6 +41,12 @@
                 "allowNullableBoolean": true,
                 "allowNullableString": true
             }
+        ],
+        "prettier/prettier": [
+            "error",
+            {
+                "endOfLine": "auto"
+            }
         ]
     }
 }
