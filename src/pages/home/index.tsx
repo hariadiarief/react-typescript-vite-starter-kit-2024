@@ -47,14 +47,13 @@ export default function Home() {
                 console.log(err)
             })
     }
-    useEffect(fethPokemon, [])
+    useEffect(fethPokemon, [pokemonList])
 
     const loadMore = () => {
         setPokemonList({
             ...pokemonList,
             isLoadingMore: true,
         })
-        fethPokemon()
     }
 
     return (

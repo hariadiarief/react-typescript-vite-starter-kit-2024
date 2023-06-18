@@ -17,30 +17,31 @@ export default function Layout() {
         setIsMobileNavShow(width >= 768) // 768px : Medium devices base on bootstrap
     }, [width])
 
-    const onScroll = () => {
-        setPositionScrollY(window.scrollY)
+    useEffect(() => {
+        const onScroll = () => {
+            setPositionScrollY(window.scrollY)
 
-        if (myRef.current) {
-            if (window.scrollY === 0) {
-                // top of page condition
-                myRef.current.style.top = '0px'
-                myRef.current.style.boxShadow = 'none'
-            } else if (positionScrollY > myRef.current.clientHeight) {
-                // scrolled condition
-                if (positionScrollY > window.scrollY) {
-                    // scrolling top
+            if (myRef.current) {
+                if (window.scrollY === 0) {
+                    // top of page condition
                     myRef.current.style.top = '0px'
-                    myRef.current.style.boxShadow =
-                        '-0px 5px 5px -5px rgba(0, 0, 0, 0.75)'
-                } else {
-                    // scrolling down
-                    myRef.current.style.top = `-${myRef.current.clientHeight}px`
                     myRef.current.style.boxShadow = 'none'
+                } else if (positionScrollY > myRef.current.clientHeight) {
+                    // scrolled condition
+                    if (positionScrollY > window.scrollY) {
+                        // scrolling top
+                        myRef.current.style.top = '0px'
+                        myRef.current.style.boxShadow =
+                            '-0px 5px 5px -5px rgba(0, 0, 0, 0.75)'
+                    } else {
+                        // scrolling down
+                        myRef.current.style.top = `-${myRef.current.clientHeight}px`
+                        myRef.current.style.boxShadow = 'none'
+                    }
                 }
             }
         }
-    }
-    useEffect(() => {
+
         window.addEventListener('scroll', onScroll)
         return () => {
             window.removeEventListener('scroll', onScroll)
