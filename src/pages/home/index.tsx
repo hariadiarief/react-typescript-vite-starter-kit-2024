@@ -20,7 +20,7 @@ interface Ipokemon {
 
 export default function Home() {
     const [pokemonList, setPokemonList] = useState<IpokemonList>({
-        isLoading: false,
+        isLoading: true,
         isLoadingMore: false,
         isHasMore: null,
         offset: 0,
@@ -29,23 +29,25 @@ export default function Home() {
     })
 
     const fethPokemon = () => {
-        axios
-            .get(
-                `https://pokeapi.co/api/v2/pokemon?limit=${pokemonList.limit}&offset=${pokemonList.offset}}`
-            )
-            .then((response) => {
-                setPokemonList({
-                    ...pokemonList,
-                    isHasMore: response.data.next,
-                    isLoadingMore: false,
-                    isLoading: false,
-                    items: pokemonList.items.concat(response.data.results),
-                    offset: pokemonList.offset + pokemonList.limit,
+        if (pokemonList.isLoading || pokemonList.isLoadingMore) {
+            axios
+                .get(
+                    `https://pokeapi.co/api/v2/pokemon?limit=${pokemonList.limit}&offset=${pokemonList.offset}`
+                )
+                .then((response) => {
+                    setPokemonList({
+                        ...pokemonList,
+                        isHasMore: response.data.next,
+                        isLoadingMore: false,
+                        isLoading: false,
+                        items: pokemonList.items.concat(response.data.results),
+                        offset: pokemonList.offset + pokemonList.limit,
+                    })
                 })
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
     }
     useEffect(fethPokemon, [pokemonList])
 
