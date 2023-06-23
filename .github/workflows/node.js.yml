@@ -26,7 +26,17 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: 'npm'
-            - run: - find . -name "node_modules" -exec rm -rf '{}' +; find . -name "package-lock.json" -exec rm -rf '{}' +; 
+            - name: Delete node_modules and package-lock.json
+              run: |
+                  if [ "$RUNNER_OS" == "Windows" ]; then
+                      if exist node_modules (
+                      rmdir /s /q node_modules
+                      )
+                      del package-lock.json
+                  else
+                      rm -rf node_modules
+                      rm -f package-lock.json
+                  fi
             - run: npm ci
             - run: npm run lint
             # no testing for awhile
