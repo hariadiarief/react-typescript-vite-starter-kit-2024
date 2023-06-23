@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios'
+import { axiosInstance } from 'services/api'
 import { Link } from 'react-router-dom'
 import { Button, Spin } from 'antd'
 
@@ -30,9 +30,9 @@ export default function Home() {
 
     const fethPokemon = () => {
         if (pokemonList.isLoading || pokemonList.isLoadingMore) {
-            axios
+            axiosInstance
                 .get(
-                    `https://pokeapi.co/api/v2/pokemon?limit=${pokemonList.limit}&offset=${pokemonList.offset}`
+                    `/pokemon?limit=${pokemonList.limit}&offset=${pokemonList.offset}`
                 )
                 .then((response) => {
                     setPokemonList({
