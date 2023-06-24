@@ -25,7 +25,7 @@ export const enableMockAdapter = ({
         /**
          * url      : /pokemon?limit=20&offset=0
          */
-        // pokemonLimit20Offset0(mockAdapter)
+        pokemonLimit20Offset0(mockAdapter)
 
         /**
          * url      : /pokemon?limit=20&offset=0
