@@ -47,6 +47,7 @@ A Starter kit **to infinity and beyond** your idea!
 - State management with [reducer and context](https://react.dev/learn/scaling-up-with-reducer-and-context)
 - Routing with [react-router v6](https://reactrouter.com/)
 - API mocking with [axios-mock-adapter](https://github.com/ctimmerm/axios-mock-adapter)
+  using `https://pokeapi.co/` for fetch example
 - Request and intercept RESTful API with [axios](https://axios-http.com/)
 - Error handling with [react-toastify](https://github.com/fkhadra/react-toastify)
 - Pre commit with [husky](https://github.com/typicode/husky)
