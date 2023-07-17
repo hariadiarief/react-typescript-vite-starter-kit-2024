@@ -42,7 +42,9 @@ A Starter kit **to infinity and beyond** your idea!
 - [Sass](https://sass-lang.com/)
 
 ## Features
-
+- Responsive Web Design
+- Dark Mode
+- State management with [reducer and context](https://react.dev/learn/scaling-up-with-reducer-and-context)
 - Routing with [react-router v6](https://reactrouter.com/)
 - API mocking with [axios-mock-adapter](https://github.com/ctimmerm/axios-mock-adapter)
 - Request and intercept RESTful API with [axios](https://axios-http.com/)
@@ -51,6 +53,7 @@ A Starter kit **to infinity and beyond** your idea!
   - Linting with [eslint](https://eslint.org/)
   - Formating with [prettier](https://prettier.io/)
 - CSS framework with [antd](https://ant.design/components/table/) and [tailwindcss](https://tailwindcss.com/)
+  
 
 ## License
 
