@@ -7,8 +7,7 @@ A Starter kit **to infinity and beyond** your idea!
 - [Installation](#installation)
 - [Usage](#usage)
 - [Features](#features)
-- [Technologies](#technologies)
-- [Contributing](#contributing)
+- [Technologies](#technologies) 
 - [License](#license)
 
 ## Installation
@@ -46,12 +45,12 @@ A Starter kit **to infinity and beyond** your idea!
 
 - Routing with [react-router v6](https://reactrouter.com/)
 - API mocking with [axios-mock-adapter](https://github.com/ctimmerm/axios-mock-adapter)
-- Request and intercept RESTful API [axios](https://axios-http.com/)
+- Request and intercept RESTful API with [axios](https://axios-http.com/)
 - Error handling with [react-toastify](https://github.com/fkhadra/react-toastify)
 - Pre commit with [husky](https://github.com/typicode/husky)
   - Linting with [eslint](https://eslint.org/)
   - Formating with [prettier](https://prettier.io/)
-- CSS framework [antd](https://ant.design/components/table/) and [tailwindcss](https://tailwindcss.com/)
+- CSS framework with [antd](https://ant.design/components/table/) and [tailwindcss](https://tailwindcss.com/)
 
 ## License
 
