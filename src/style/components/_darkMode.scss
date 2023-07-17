@@ -1,0 +1,22 @@
+html {
+    --color-background: #fafafa;
+    --color-foreground: #1f2023;
+    --color-shadow: #aaa;
+
+    --image-grayscale: 0;
+    --image-opacity: 100%;
+}
+
+html.dark {
+    --color-background: #1f2023;
+    --color-foreground: #efefef;
+    --color-shadow: rgba(0, 0, 0, 0.8);
+
+    --image-grayscale: 50%;
+    --image-opacity: 90%;
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+}

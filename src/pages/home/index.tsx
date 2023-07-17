@@ -66,13 +66,12 @@ export default function Home() {
                     : pokemonList.items.map((pokemon, index) => {
                           return (
                               <Link
-                                  className='home__grid__item'
+                                  className='bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl flex flex-col items-center'
                                   to={`/pokemon/${pokemon.name}`}
                                   key={index}
                               >
                                   <img
                                       alt={pokemon.name}
-                                      className='home__grid__item__image'
                                       src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
                                           index + 1
                                       }.png`}
@@ -80,7 +79,9 @@ export default function Home() {
                                           currentTarget.src = require('assets/broken.png')
                                       }}
                                   />
-                                  <span>{pokemon.name}</span>
+                                  <h3 className='text-slate-900 dark:text-white mt-5 text-base font-medium tracking-tight'>
+                                      {pokemon.name}
+                                  </h3>
                               </Link>
                           )
                       })}
@@ -90,15 +91,16 @@ export default function Home() {
                         : null}
                 </>
             </div>
-            <Button type='primary' onClick={loadMore}>
-                Load More
-            </Button>
+            <Button onClick={loadMore}>Load More</Button>
         </div>
     )
 
     function renderLoader() {
         return Array.apply(null, Array(6)).map((_, index) => (
-            <div className='home__grid__item py-12' key={index}>
+            <div
+                className='bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl flex flex-col items-center'
+                key={index}
+            >
                 <Spin size='large' />
             </div>
         ))

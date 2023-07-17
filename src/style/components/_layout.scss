@@ -52,19 +52,19 @@ $header-height--md: 75px;
 
 .layout__header {
     z-index: 90;
-    display: flex;
-    flex-direction: column;
+    // display: flex;
+    // flex-direction: column;
 
-    background-color: #27374d;
+    // background-color: #27374d;
     transition: top 0.5s;
 
     top: 0;
     position: fixed;
     width: 100%;
 
-    @include for-size(md) {
-        padding: 18px 62px;
-    }
+    // @include for-size(md) {
+    //     padding: 18px 62px;
+    // }
 
     &__menu-btn {
         display: flex;
