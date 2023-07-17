@@ -56,7 +56,7 @@ export default function Layout() {
         <>
             <Disclosure
                 as='nav'
-                className='bg-gray-800 layout__header'
+                className='bg-gray-800 layout__nav'
                 ref={myRef}
             >
                 {({ open }) => (
@@ -148,7 +148,7 @@ export default function Layout() {
                     </>
                 )}
             </Disclosure>
-            <main className='mt-8'>
+            <main className='mt-12'>
                 <Outlet />
             </main>
         </>
