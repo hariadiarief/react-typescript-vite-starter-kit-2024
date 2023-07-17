@@ -1,46 +1,58 @@
-# Getting Started with Create React App
+# react-typescript-starter-kit-2023
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A Starter kit **to infinity and beyond** your idea!
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [Technologies](#technologies)
+- [Contributing](#contributing)
+- [License](#license)
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Clone the repository.
+   ```shell
+   git clone https://github.com/hariadiarief/react-typescript-starter-kit-2023.git
+   ```
+3. Requirements
+   - node (v16+)
+   - npm (v7+)
+2. Install the dependencies.
+   ```shell
+   npm install
+   ```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Usage
 
-### `npm test`
+1. Start the development server.
+   ```shell
+   npm start
+   ```
+2. Open the application in your browser.
+   ```
+   http://localhost:3000
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies
 
-### `npm run build`
+- [React](https://react.dev/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Sass](https://sass-lang.com/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Routing with [react-router v6](https://reactrouter.com/)
+- API mocking with [axios-mock-adapter](https://github.com/ctimmerm/axios-mock-adapter)
+- Request and intercept RESTful API [axios](https://axios-http.com/)
+- Error handling with [react-toastify](https://github.com/fkhadra/react-toastify)
+- Pre commit with [husky](https://github.com/typicode/husky)
+  - Linting with [eslint](https://eslint.org/)
+  - Formating with [prettier](https://prettier.io/)
+- CSS framework [antd](https://ant.design/components/table/) and [tailwindcss](https://tailwindcss.com/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## License
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+This project is licensed under the terms of the [Creative Commons License](https://creativecommons.org/licenses/) - [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). 
