@@ -12,6 +12,8 @@ function App() {
 
   funcFoo();
 
+  // test
+
   return (
     <>
       <div>
