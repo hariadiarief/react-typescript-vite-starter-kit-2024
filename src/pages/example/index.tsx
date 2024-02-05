@@ -37,11 +37,7 @@ export default function About() {
                 </p>
             </div>
 
-            <img
-                style={{ width: '50vw' }}
-                src={'/images/logo.jpg'}
-                alt=''
-            />
+            <img style={{ width: '50vw' }} src={'/images/logo.jpg'} alt='' />
         </div>
     )
 }

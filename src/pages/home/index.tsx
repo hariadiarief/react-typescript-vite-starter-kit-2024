@@ -76,7 +76,8 @@ export default function Home() {
                                           index + 1
                                       }.png`}
                                       onError={({ currentTarget }) => {
-                                          currentTarget.src = ('/images/broken.png')
+                                          currentTarget.src =
+                                              '/images/broken.png'
                                       }}
                                   />
                                   <h3 className='text-slate-900 dark:text-white mt-5 text-base font-medium tracking-tight'>
@@ -103,6 +104,6 @@ export default function Home() {
             >
                 <Spin size='large' />
             </div>
-        ));
+        ))
     }
 }
