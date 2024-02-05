@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { axiosInstance } from 'services/api'
+import { axiosInstance } from '@/services/api'
 import { Link } from 'react-router-dom'
 import { Button, Spin } from 'antd'
 
@@ -76,7 +76,7 @@ export default function Home() {
                                           index + 1
                                       }.png`}
                                       onError={({ currentTarget }) => {
-                                          currentTarget.src = require('assets/broken.png')
+                                          currentTarget.src = ('/images/broken.png')
                                       }}
                                   />
                                   <h3 className='text-slate-900 dark:text-white mt-5 text-base font-medium tracking-tight'>
@@ -96,13 +96,13 @@ export default function Home() {
     )
 
     function renderLoader() {
-        return Array.apply(null, Array(6)).map((_, index) => (
+        return [...Array(6)].map((_, index) => (
             <div
                 className='bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl flex flex-col items-center'
                 key={index}
             >
                 <Spin size='large' />
             </div>
-        ))
+        ));
     }
 }

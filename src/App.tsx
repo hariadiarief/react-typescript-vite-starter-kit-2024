@@ -1,8 +1,8 @@
 import { ConfigProvider, theme } from 'antd'
 import { RouterProvider } from 'react-router-dom'
-import { publicRoutes } from 'routes'
-import { AppProvider } from './contexts/appContext'
-import { useAppContext } from 'contexts/appContext'
+import { publicRoutes } from './routes'
+import { AppProvider } from '@/contexts/appContext'
+import { useAppContext } from '@/contexts/appContext'
 
 const App = () => {
     return (

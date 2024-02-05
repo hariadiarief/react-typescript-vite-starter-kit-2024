@@ -1,4 +1,4 @@
-import { axiosInstance } from 'services/api'
+import { axiosInstance } from '@/services/api'
 import MockAdapter from 'axios-mock-adapter'
 import {
     pokemonLimit20Offset0,

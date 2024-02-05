@@ -2,7 +2,7 @@ import { Outlet, NavLink, useLocation } from 'react-router-dom'
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Switch } from 'antd'
-import { useAppContext } from 'contexts/appContext'
+import { useAppContext } from '@/contexts/appContext'
 import { useEffect, useRef, useState } from 'react'
 
 const navigation = [
@@ -87,7 +87,7 @@ export default function Layout() {
                                     <div className='flex flex-shrink-0 items-center'>
                                         <img
                                             className='h-8 w-auto '
-                                            src={require('assets/logo.png')}
+                                            src={'images/logo.png'}
                                             alt='company_logo'
                                         />
                                     </div>

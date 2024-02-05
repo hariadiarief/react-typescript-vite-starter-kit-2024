@@ -3,7 +3,7 @@ export default function About() {
         <div className='container flex flex-col items-center justify-center py-8'>
             <img
                 style={{ width: '50vw' }}
-                src={require('assets/logo.jpg')}
+                src={'/images/logo.jpg'}
                 alt=''
             />
         </div>

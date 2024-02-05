@@ -1,5 +1,5 @@
 import { Button, Card, Switch } from 'antd'
-import { useAppContext } from 'contexts/appContext'
+import { useAppContext } from '@/contexts/appContext'
 
 export default function About() {
     const { count, increment, decrement, isDark, setIsDark } = useAppContext()
@@ -39,7 +39,7 @@ export default function About() {
 
             <img
                 style={{ width: '50vw' }}
-                src={require('assets/logo.jpg')}
+                src={'/images/logo.jpg'}
                 alt=''
             />
         </div>
