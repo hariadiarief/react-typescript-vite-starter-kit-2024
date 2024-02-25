@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from 'react'
 const navigation = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
+    { name: 'Example', href: '/example' },
 ]
 
 function classNames(...classes: string[]) {
