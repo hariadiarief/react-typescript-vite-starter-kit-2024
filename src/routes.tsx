@@ -15,7 +15,7 @@ const Example = lazy(async () => await import('@/pages/example'))
 
 export const publicRoutes = createBrowserRouter(
     createRoutesFromElements(
-        <Route path='/' element={<Layout />}>
+        <Route path='/'>
             <Route
                 index
                 element={

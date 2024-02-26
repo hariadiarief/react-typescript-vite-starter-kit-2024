@@ -1,9 +1,13 @@
-import { Button } from "@/components/ui/button"
+import MenubarDemo from './Menubar'
+import NavigationMenuDemo from './NavigationMenu'
+import Sidebar from './sidebar'
 
-export default function Home() {
+export default function index() {
   return (
     <div>
-      <Button>Click me</Button>
+        <MenubarDemo />
+        <NavigationMenuDemo />
+        <Sidebar />
     </div>
   )
 }

@@ -1,8 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  corePlugins: {
-    preflight: false, // <== disable this! for prevent conflit wiht antd
-  },
+  // Uncomment code below for usign antD
+  // corePlugins: {
+  //   preflight: false, // <== disable this! for prevent conflit wiht antd
+  // },
   darkMode: ["class"],
   content: [
     './pages/**/*.{ts,tsx}',
