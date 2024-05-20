@@ -1,10 +1,11 @@
 import { NavLink, useLocation } from 'react-router-dom'
 import React, { useEffect } from 'react'
 import * as Collapsible from '@radix-ui/react-collapsible'
+import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react'
 
 interface DashboardNavProps {
     path: string
-    icon?: string
+    icon?: React.ReactNode
     disabled?: boolean
     title: string
     children?: DashboardNavProps[]
@@ -41,7 +42,7 @@ export function DashboardNav({ menus }: { menus: DashboardNavProps[] }) {
     }
 
     return (
-        <nav className='grid items-start gap-2'>
+        <nav className='grid items-start gap-2  '>
             {menus.map((menu, index) => {
                 // const Icon = Icons[menu.icon || 'arrowRight']
                 return (
@@ -51,20 +52,17 @@ export function DashboardNav({ menus }: { menus: DashboardNavProps[] }) {
                             end
                             key={index + menu.path}
                             to={menu.path}
-                            className={({ isActive, isPending }) => {
-                                console.log({
-                                    name: menu.title,
-                                    path: menu.path,
-                                    isActive,
-                                    isPending,
-                                })
-
-                                return `group flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground ${
-                                    isActive ? 'bg-accent' : 'transparent'
+                            className={({ isActive }) => {
+                                return `group flex items-center rounded-md px-3 py-2 text-sm font-medium ${
+                                    isActive
+                                        ? 'bg-primary text-primary-foreground hover:bg-primary/9'
+                                        : 'hover:bg-accent hover:text-accent-foreground'
                                 }`
                             }}
                         >
-                            {/* <Icon className='mr-2 h-4 w-4' /> */}
+                            {menu.icon && (
+                                <span className='mr-2'>{menu.icon}</span>
+                            )}
                             <div>{menu.title}</div>
                         </NavLink>
                     ) : (
@@ -84,15 +82,24 @@ export function DashboardNav({ menus }: { menus: DashboardNavProps[] }) {
                             }}
                         >
                             <Collapsible.Trigger asChild>
-                                <div className='group flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground'>
+                                <div className='group flex items-center  rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground cursor-pointer'>
+                                    {menu.icon && (
+                                        <span className='mr-2'>
+                                            {menu.icon}
+                                        </span>
+                                    )}
                                     <span className='Text'>{menu.title}</span>
-                                    <button className='IconButton'>
-                                        {open.includes(menu.path) ? 'A' : 'V'}
+                                    <button className='ml-auto'>
+                                        {open.includes(menu.path) ? (
+                                            <ChevronUpIcon className='h-4 w-4 shrink-0 transition-transform duration-200' />
+                                        ) : (
+                                            <ChevronDownIcon className='h-4 w-4 shrink-0 transition-transform duration-200' />
+                                        )}
                                     </button>
                                 </div>
                             </Collapsible.Trigger>
 
-                            <Collapsible.Content className='ml-2'>
+                            <Collapsible.Content className='ml-[20px]'>
                                 <DashboardNav menus={menu.children} />
                             </Collapsible.Content>
                         </Collapsible.Root>

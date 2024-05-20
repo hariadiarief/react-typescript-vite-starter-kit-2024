@@ -14,5 +14,3 @@ export const router = createBrowserRouter([
     routerBlog,
     routerDashboad,
 ])
-
-console.log({ router })
