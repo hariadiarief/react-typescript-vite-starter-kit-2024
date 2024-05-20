@@ -1,5 +1,5 @@
-import { DashboardNav } from '@/components/nav'
-import { dashboardConfig } from './dashboard'
+import { DashboardNav } from '@/components/DashboardNav'
+import { dashboardConfig } from '@/features/dashboard/config/dashboard'
 
 export default function Sidebar() {
     return (
