@@ -15,7 +15,6 @@ export const routerDashboad = {
         {
             title: 'Home',
             path: '/dashboard',
-            index: true,
             element: <Home />,
             icon: <HomeIcon width={16} height={16} />,
         },
@@ -25,7 +24,6 @@ export const routerDashboad = {
             element: <Example />,
             icon: <FileIcon width={16} height={16} />,
         },
-
         {
             title: 'Menu Parent 1',
             path: '/dashboard/menu1/',

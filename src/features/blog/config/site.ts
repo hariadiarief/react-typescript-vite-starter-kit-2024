@@ -9,5 +9,3 @@ export const siteConfig = {
         linkedin: 'https://www.linkedin.com/in/hariadiarief/',
     },
 }
-
-export type SiteConfig = typeof siteConfig

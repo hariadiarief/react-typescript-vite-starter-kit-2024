@@ -3,21 +3,21 @@ import React, { useEffect } from 'react'
 import * as Collapsible from '@radix-ui/react-collapsible'
 import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react'
 
-interface DashboardNavProps {
+interface INavigationMenu {
     path: string
     icon?: React.ReactNode
     disabled?: boolean
     title: string
-    children?: DashboardNavProps[]
+    children?: INavigationMenu[]
 }
 
-export function DashboardNav({ menus }: { menus: DashboardNavProps[] }) {
+export function NavigationMenu({ menus }: { menus: INavigationMenu[] }) {
     const location = useLocation()
     const [open, setOpen] = React.useState<string[]>([])
 
     useEffect(() => {
         function findPath(
-            routes: DashboardNavProps[],
+            routes: INavigationMenu[],
             targetPath: string
         ): string[] | null {
             for (const route of routes) {
@@ -43,14 +43,13 @@ export function DashboardNav({ menus }: { menus: DashboardNavProps[] }) {
 
     return (
         <nav className='grid items-start gap-2  '>
-            {menus.map((menu, index) => {
-                // const Icon = Icons[menu.icon || 'arrowRight']
+            {menus.map((menu) => {
                 return (
                     menu.path &&
                     (!menu.children ? (
                         <NavLink
                             end
-                            key={index + menu.path}
+                            key={menu.path}
                             to={menu.path}
                             className={({ isActive }) => {
                                 return `group flex items-center rounded-md px-3 py-2 text-sm font-medium ${
@@ -67,6 +66,7 @@ export function DashboardNav({ menus }: { menus: DashboardNavProps[] }) {
                         </NavLink>
                     ) : (
                         <Collapsible.Root
+                            key={menu.path}
                             className='CollapsibleRoot'
                             open={open.includes(menu.path)}
                             onOpenChange={() => {
@@ -100,7 +100,7 @@ export function DashboardNav({ menus }: { menus: DashboardNavProps[] }) {
                             </Collapsible.Trigger>
 
                             <Collapsible.Content className='ml-[20px]'>
-                                <DashboardNav menus={menu.children} />
+                                <NavigationMenu menus={menu.children} />
                             </Collapsible.Content>
                         </Collapsible.Root>
                     ))

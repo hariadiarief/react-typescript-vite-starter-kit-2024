@@ -1,7 +1,7 @@
 'use client'
 
-import { MainNav } from './main-nav'
-import { MobileNav } from './mobile-nav'
+import { MainNav } from './MainNav'
+import { MobileNav } from './MobileNav'
 
 export const SiteHeader = () => {
     return (
