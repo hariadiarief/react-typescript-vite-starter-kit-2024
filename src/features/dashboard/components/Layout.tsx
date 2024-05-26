@@ -1,6 +1,6 @@
 import { NavigationMenu } from './NavigationMenu'
 import { Outlet } from 'react-router'
-import { routerDashboad } from '../routes'
+import { routerDashboadPrivate } from '../routes'
 import { MobileNavigation } from './MobileNavigation'
 import { SquareCodeIcon } from 'lucide-react'
 
@@ -11,7 +11,9 @@ export default function Layout() {
                 <div className=' h-14 flex items-center px-3'>
                     <MobileNavigation
                         children={
-                            <NavigationMenu menus={routerDashboad.children} />
+                            <NavigationMenu
+                                menus={routerDashboadPrivate.children}
+                            />
                         }
                     />
                     <div className=' flex items-center flex-grow justify-center md:justify-start '>
@@ -22,7 +24,7 @@ export default function Layout() {
             </header>
             <div className='flex flex-grow relative'>
                 <aside className='hidden w-[250px] flex-col md:flex  bg-white h-screen fixed p-2'>
-                    <NavigationMenu menus={routerDashboad.children} />
+                    <NavigationMenu menus={routerDashboadPrivate.children} />
                 </aside>
                 <main className='bg-[#f7f7f7] flex-grow min-h h-[200vh] md:pl-[250px]'>
                     <Outlet />

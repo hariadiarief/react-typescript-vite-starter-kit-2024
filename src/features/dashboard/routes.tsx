@@ -2,13 +2,23 @@ import { FileIcon, GraduationCapIcon, HomeIcon } from 'lucide-react'
 import Layout from './components/Layout'
 import Example from './pages/Example'
 import Home from './pages/Home'
+import Login from './pages/Login'
+import Register from './pages/Register'
 
 const Menu21 = () => <div>menu 21</div>
 const Menu22 = () => <div>menu 22</div>
 const Menu221 = () => <div>menu 221</div>
 const Menu222 = () => <div>menu 222</div>
 
-export const routerDashboad = {
+export const routerDashboadPublic = {
+    path: '/dashboard',
+    children: [
+        { path: '/dashboard', element: <Login /> },
+        { path: '/dashboard/register', element: <Register /> },
+    ],
+}
+
+export const routerDashboadPrivate = {
     path: '/dashboard',
     element: <Layout />,
     children: [

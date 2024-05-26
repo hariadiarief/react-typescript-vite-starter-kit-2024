@@ -1,7 +1,7 @@
 import { lazy } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 import { routerBlog } from '@/features/blog/routes'
-import { routerDashboad } from './features/dashboard/routes'
+import { routerDashboadPublic } from './features/dashboard/routes'
 
 const Home = lazy(() => import('@/features'))
 
@@ -12,5 +12,5 @@ export const router = createBrowserRouter([
         loader: () => <>Loading...</>,
     },
     routerBlog,
-    routerDashboad,
+    routerDashboadPublic,
 ])
