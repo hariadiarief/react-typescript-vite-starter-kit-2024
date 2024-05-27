@@ -1,4 +1,4 @@
-import { FileIcon, GraduationCapIcon, HomeIcon } from 'lucide-react'
+import { FileIcon, HomeIcon, ShoppingCartIcon, UsersIcon } from 'lucide-react'
 import Layout from './components/Layout'
 import Example from './pages/Example'
 import Home from './pages/Home'
@@ -7,10 +7,11 @@ import Register from './pages/Register'
 import { useContext } from 'react'
 import { AuthContext } from '@/features/dashboard/context/auth/AuthState'
 
-const Menu21 = () => <div>menu 21</div>
-const Menu22 = () => <div>menu 22</div>
-const Menu221 = () => <div>menu 221</div>
-const Menu222 = () => <div>menu 222</div>
+const Order = () => <div>menu 22</div>
+const ProductList = () => <div>Product List</div>
+const ProductCreate = () => <div>Product Create</div>
+const UserList = () => <div>User List</div>
+const UserCreate = () => <div>User Create</div>
 
 export default function RouterDashboad() {
     const { state } = useContext(AuthContext)
@@ -44,49 +45,47 @@ export const routerDashboadPrivate = {
             icon: <FileIcon width={16} height={16} />,
         },
         {
-            title: 'Menu Parent 1',
-            path: '/dashboard/menu1/',
-            icon: <GraduationCapIcon width={16} height={16} />,
-
+            title: 'E-Commerce',
+            path: '/dashboard/ecommerce/',
+            icon: <ShoppingCartIcon width={16} height={16} />,
             children: [
                 {
-                    title: 'Menu Children 1-1',
-                    path: '/dashboard/menu1/1',
-                    element: <Menu21 />,
+                    title: 'Order',
+                    path: '/dashboard/ecommerce/order',
+                    element: <Order />,
                 },
                 {
-                    title: 'Menu Children 1-2',
-                    path: '/dashboard/menu1/2',
-                    element: <Menu22 />,
+                    title: 'Product',
+                    path: '/dashboard/ecommerce/product',
+                    children: [
+                        {
+                            title: 'Product List',
+                            path: '/dashboard/ecommerce/product/list',
+                            element: <ProductList />,
+                        },
+                        {
+                            title: 'New Product',
+                            path: '/dashboard/ecommerce/product/create',
+                            element: <ProductCreate />,
+                        },
+                    ],
                 },
             ],
         },
         {
-            title: 'Menu Parent 2',
-            path: '/dashboard/menu2/',
-            icon: <GraduationCapIcon width={16} height={16} />,
-
+            title: 'Users',
+            path: '/dashboard/user/',
+            icon: <UsersIcon width={16} height={16} />,
             children: [
                 {
-                    title: 'Menu Children 2-1',
-                    path: '/dashboard/menu2/1',
-                    element: <Menu21 />,
+                    title: 'List User',
+                    path: '/dashboard/user/list',
+                    element: <UserList />,
                 },
                 {
-                    title: 'Menu Children 2-2',
-                    path: '/dashboard/menu2/2',
-                    children: [
-                        {
-                            title: 'Menu Children 2-2-1',
-                            path: '/dashboard/menu2/2/1',
-                            element: <Menu221 />,
-                        },
-                        {
-                            title: 'Menu Children 2-2-2',
-                            path: '/dashboard/menu2/2/2',
-                            element: <Menu222 />,
-                        },
-                    ],
+                    title: 'Create User',
+                    path: '/dashboard/user/create',
+                    element: <UserCreate />,
                 },
             ],
         },

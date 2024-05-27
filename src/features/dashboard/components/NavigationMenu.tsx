@@ -1,7 +1,8 @@
 import { NavLink, useLocation } from 'react-router-dom'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as Collapsible from '@radix-ui/react-collapsible'
-import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react'
+import { ChevronDownIcon, ChevronUpIcon, SearchXIcon } from 'lucide-react'
+import { Input } from '@/components/ui/input'
 
 interface INavigationMenu {
     path: string
@@ -12,7 +13,52 @@ interface INavigationMenu {
 }
 
 export function NavigationMenu({ menus }: { menus: INavigationMenu[] }) {
+    const [keyword, setKeyword] = useState('')
+
+    const searchNodes = (keyword: string, nodes: INavigationMenu[]) => {
+        const results: INavigationMenu[] = []
+
+        nodes.forEach((node) => {
+            if (
+                node.title.toLowerCase().includes(keyword.toLowerCase()) ||
+                node.path.toLowerCase().includes(keyword.toLowerCase())
+            )
+                results.push(node)
+            else if (node.children && node.children?.length > 0)
+                results.push(...searchNodes(keyword, node.children))
+        })
+
+        return results
+    }
+
+    const filteredMenu = searchNodes(keyword, menus)
+
+    return (
+        <>
+            <div className='flex w-full max-w-sm items-center space-x-2  '>
+                <Input
+                    type='name'
+                    placeholder='Search Menu'
+                    onChange={(e) => setKeyword(e.target.value)}
+                />
+            </div>
+            <hr className='mt-2 mb-3' />
+            <ItemMenu menus={!keyword ? menus : filteredMenu} />
+            {!filteredMenu.length && keyword && (
+                <div className='flex flex-col items-center mt-8'>
+                    <SearchXIcon size={46} className='' />
+                    <span className='text-muted-foreground mt-8'>
+                        No menu found for '<strong>{keyword}</strong>'
+                    </span>
+                </div>
+            )}
+        </>
+    )
+}
+
+const ItemMenu = ({ menus }: { menus: INavigationMenu[] }) => {
     const location = useLocation()
+
     const [open, setOpen] = React.useState<string[]>([])
 
     useEffect(() => {
@@ -36,10 +82,6 @@ export function NavigationMenu({ menus }: { menus: INavigationMenu[] }) {
         const result = findPath(menus, location.pathname) || []
         setOpen(result)
     }, [menus, location.pathname])
-
-    if (!menus?.length) {
-        return null
-    }
 
     return (
         <nav className='grid items-start gap-2  '>
@@ -100,7 +142,7 @@ export function NavigationMenu({ menus }: { menus: INavigationMenu[] }) {
                             </Collapsible.Trigger>
 
                             <Collapsible.Content className='ml-[20px]'>
-                                <NavigationMenu menus={menu.children} />
+                                <ItemMenu menus={menu.children} />
                             </Collapsible.Content>
                         </Collapsible.Root>
                     ))
