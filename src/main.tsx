@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom/client'
 
 import { ToastContainer } from 'react-toastify'
 import { ConfigProvider, theme } from 'antd'
-import { RouterProvider } from 'react-router-dom'
-import { router } from './routes'
+import { BrowserRouter } from 'react-router-dom'
 import { AppProvider } from '@/contexts/appContext'
 import { useAppContext } from '@/contexts/appContext'
 
@@ -12,6 +11,8 @@ import 'antd/dist/reset.css'
 import './style/main.scss'
 import 'react-toastify/dist/ReactToastify.css'
 import './style/index.css'
+import Routes from './routes'
+import AuthProvider from './features/dashboard/context/auth/AuthContext'
 
 const App = () => {
     const { isDark } = useAppContext()
@@ -23,7 +24,11 @@ const App = () => {
                 algorithm: isDark ? darkAlgorithm : defaultAlgorithm,
             }}
         >
-            <RouterProvider router={router} />
+            <AuthProvider>
+                <BrowserRouter>
+                    <Routes />
+                </BrowserRouter>
+            </AuthProvider>
         </ConfigProvider>
     )
 }

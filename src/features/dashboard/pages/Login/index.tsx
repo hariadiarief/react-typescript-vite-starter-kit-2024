@@ -10,14 +10,19 @@ import {
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import React from 'react'
+import React, { useContext } from 'react'
+import { AuthContext } from '@/features/dashboard/context/auth/AuthState'
 
 export default function Login() {
+    const { login } = useContext(AuthContext)
+
     const [isLoading, setIsLoading] = React.useState<boolean>(false)
 
     async function onSubmit(event: React.SyntheticEvent) {
         event.preventDefault()
         setIsLoading(true)
+
+        login()
 
         setTimeout(() => {
             setIsLoading(false)
@@ -34,7 +39,7 @@ export default function Login() {
                 />
             </div>
             <div className='flex justify-center items-center w-full md:w-[60%]'>
-                <Card className='w-full md:w-[50%]'>
+                <Card className='w-full md:w-[50%] md:min-w-[300px]'>
                     <CardHeader className='space-y-1'>
                         <CardTitle className='text-2xl'>
                             Welcome Back!

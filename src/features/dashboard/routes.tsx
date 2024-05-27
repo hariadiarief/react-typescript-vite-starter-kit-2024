@@ -4,13 +4,22 @@ import Example from './pages/Example'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import { useContext } from 'react'
+import { AuthContext } from '@/features/dashboard/context/auth/AuthState'
 
 const Menu21 = () => <div>menu 21</div>
 const Menu22 = () => <div>menu 22</div>
 const Menu221 = () => <div>menu 221</div>
 const Menu222 = () => <div>menu 222</div>
 
-export const routerDashboadPublic = {
+export default function RouterDashboad() {
+    const { state } = useContext(AuthContext)
+    const { isAuthenticated } = state
+
+    return isAuthenticated ? routerDashboadPrivate : routerDashboadPublic
+}
+
+const routerDashboadPublic = {
     path: '/dashboard',
     children: [
         { path: '/dashboard', element: <Login /> },
