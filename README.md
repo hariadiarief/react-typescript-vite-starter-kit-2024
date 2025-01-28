@@ -1,61 +1,50 @@
-# React + Typescript + Vite Starter Kit 2024
+# React + TypeScript + Vite
 
-A Starter kit **to infinity and beyond** your idea!
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Table of Contents
+Currently, two official plugins are available:
 
--   [Installation](#installation)
--   [Usage](#usage)
--   [Features](#features)
--   [Technologies](#technologies)
--   [License](#license)
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Installation
+## Expanding the ESLint configuration
 
-1. Clone the repository.
-    ```shell
-    git clone https://github.com/hariadiarief/react-typescript-starter-kit-2023.git
-    ```
-2. Requirements
-    - node (v20.x)
-3. Install the dependencies.
-    ```shell
-    npm install
-    ```
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-## Usage
+- Configure the top-level `parserOptions` property like this:
 
-1. Start the development server.
-    ```shell
-    npm run dev
-    ```
-2. Open the application in your browser.
-    ```
-    http://localhost:3000
-    ```
+```js
+export default tseslint.config({
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
+```
 
-## Technologies
+- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
+- Optionally add `...tseslint.configs.stylisticTypeChecked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
 
--   [React](https://react.dev/)
--   [Typescript](https://www.typescriptlang.org/)
--   [Vite](https://vitejs.dev/)
--   [Sass](https://sass-lang.com/)
+```js
+// eslint.config.js
+import react from 'eslint-plugin-react'
 
-## Features
-
--   Responsive Web Design
--   Dark Mode
--   State management with [reducer and context](https://react.dev/learn/scaling-up-with-reducer-and-context)
--   Routing with [react-router v6](https://reactrouter.com/)
--   API mocking with [axios-mock-adapter](https://github.com/ctimmerm/axios-mock-adapter)
-    -   using `https://pokeapi.co/` for fetch example
--   Request and intercept RESTful API with [axios](https://axios-http.com/)
--   Error handling with [react-toastify](https://github.com/fkhadra/react-toastify)
--   Pre commit with [husky](https://github.com/typicode/husky)
-    -   Linting with [eslint](https://eslint.org/)
-    -   Formating with [prettier](https://prettier.io/)
--   CSS framework with [antd](https://ant.design/components/table/) and [tailwindcss](https://tailwindcss.com/)
-
-## License
-
-This project is licensed under the terms of the [Creative Commons License](https://creativecommons.org/licenses/) - [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+export default tseslint.config({
+  // Set the react version
+  settings: { react: { version: '18.3' } },
+  plugins: {
+    // Add the react plugin
+    react,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended rules
+    ...react.configs.recommended.rules,
+    ...react.configs['jsx-runtime'].rules,
+  },
+})
+```
