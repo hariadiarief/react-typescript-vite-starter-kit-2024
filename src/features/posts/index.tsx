@@ -1,3 +1,5 @@
+// import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router'
 
@@ -80,7 +82,9 @@ export default function Post() {
               <td>{post.id}</td>
               <td>{post.title}</td>
               <td>
-                <Link to={`/post/${post.id}`}>Detail</Link>
+                <Link to={`/post/${post.id}`}>
+                  <Button>Detail</Button>
+                </Link>
               </td>
             </tr>
           ))}
