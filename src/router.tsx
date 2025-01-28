@@ -1,4 +1,5 @@
 import { Navigate, useRoutes } from 'react-router'
+import Layout from './components/layout'
 import { useAuth } from './context/auth/authContext'
 import Login from './features/authentication/login'
 import Register from './features/authentication/register'
@@ -11,11 +12,17 @@ export default function RoutesApp() {
   const privateRoutes = [
     {
       path: '/',
-      element: <Post />
-    },
-    {
-      path: '/post/:postId',
-      element: <PostDetail />
+      element: <Layout />,
+      children: [
+        {
+          path: '/',
+          element: <Post />
+        },
+        {
+          path: '/post/:postId',
+          element: <PostDetail />
+        }
+      ]
     }
   ]
 
