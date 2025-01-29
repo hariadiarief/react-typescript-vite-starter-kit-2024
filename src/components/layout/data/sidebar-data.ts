@@ -1,4 +1,8 @@
-import { Command, LayoutDashboardIcon } from 'lucide-react'
+import {
+  AlignStartHorizontal,
+  Command,
+  LayoutDashboardIcon
+} from 'lucide-react'
 import { type SidebarData } from '../types'
 
 export const sidebarData: SidebarData = {
@@ -20,6 +24,11 @@ export const sidebarData: SidebarData = {
           title: 'Post',
           url: '/',
           icon: LayoutDashboardIcon
+        },
+        {
+          title: 'Kanban',
+          url: '/kanban',
+          icon: AlignStartHorizontal
         }
       ]
     }

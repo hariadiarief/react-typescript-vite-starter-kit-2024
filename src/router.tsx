@@ -3,6 +3,10 @@ import Layout from './components/layout'
 import { useAuth } from './context/auth/authContext'
 import Login from './features/authentication/login'
 import Register from './features/authentication/register'
+import Kanban from './features/kanban'
+import CreateKanban from './features/kanban/create'
+import DetailKanban from './features/kanban/detail'
+import EditKanban from './features/kanban/edit'
 import Post from './features/posts'
 import PostDetail from './features/posts/detail'
 
@@ -15,12 +19,28 @@ export default function RoutesApp() {
       element: <Layout />,
       children: [
         {
-          path: '/',
+          index: true,
           element: <Post />
         },
         {
           path: '/post/:postId',
           element: <PostDetail />
+        },
+        {
+          path: '/kanban',
+          element: <Kanban />
+        },
+        {
+          path: '/kanban/create',
+          element: <CreateKanban />
+        },
+        {
+          path: '/kanban/detail/:id',
+          element: <DetailKanban />
+        },
+        {
+          path: '/kanban/edit/:id',
+          element: <EditKanban />
         }
       ]
     }
