@@ -10,9 +10,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useAuth } from '@/context/auth/authContext'
-import { ILoginPayload, ILoginResponse, login } from '@/services/api/auth'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useMutation } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router'
 import { z } from 'zod'
@@ -34,31 +32,40 @@ export default function Login() {
     }
   })
 
-  const { mutate: loginMutation, isPending } = useMutation<
-    ILoginResponse,
-    Error,
-    ILoginPayload
-  >({
-    mutationFn: login,
-    onSuccess: data => {
-      const payload = {
-        token: data.jwt,
-        user: {
-          username: data.user.username,
-          email: data.user.email
-        }
-      }
+  // const { mutate: loginMutation, isPending } = useMutation<
+  //   ILoginResponse,
+  //   Error,
+  //   ILoginPayload
+  // >({
+  //   mutationFn: login,
+  //   onSuccess: data => {
+  //     const payload = {
+  //       token: data.jwt,
+  //       user: {
+  //         username: data.user.username,
+  //         email: data.user.email
+  //       }
+  //     }
 
-      localStorage.setItem('auth', JSON.stringify(payload))
-      dispatch({ type: 'login', payload })
-    },
-    onError: error => {
-      console.error('Login gagal:', error)
-    }
-  })
+  //     localStorage.setItem('auth', JSON.stringify(payload))
+  //     dispatch({ type: 'login', payload })
+  //   },
+  //   onError: error => {
+  //     console.error('Login gagal:', error)
+  //   }
+  // })
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    loginMutation(data)
+    const payload = {
+      token: 'fake-token',
+      user: {
+        email: data.identifier,
+        username: data.identifier
+      }
+    }
+
+    localStorage.setItem('auth', JSON.stringify(payload))
+    dispatch({ type: 'login', payload })
     navigate('/')
   }
 
@@ -103,7 +110,7 @@ export default function Login() {
             </CardContent>
             <CardFooter className='flex flex-col space-y-4'>
               <Button type='submit' className='w-full'>
-                {isPending ? 'Loading...' : 'Login'}
+                Login
               </Button>
               <p className='text-center text-sm'>
                 Don't have an account?{' '}
