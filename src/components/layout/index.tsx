@@ -1,11 +1,13 @@
 import { AppSidebar } from '@/components/layout/app-sidebar'
-import { sidebarData } from '@/components/layout/data/sidebar-data'
 import { Header } from '@/components/layout/header'
 import { SidebarProvider } from '@/components/ui/sidebar'
 import { cn } from '@/lib/utils'
 import { Outlet } from 'react-router'
+import { SidebarDataComponent } from './data/sidebar-data'
 
 export default function Layout() {
+  const { sidebarData } = SidebarDataComponent()
+
   const defaultOpen = true
 
   return (

@@ -8,10 +8,11 @@ import {
   SidebarRail
 } from '@/components/ui/sidebar'
 import { useAuth } from '@/context/auth/authContext'
-import { sidebarData } from './data/sidebar-data'
+import { SidebarDataComponent } from './data/sidebar-data'
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { state: authState } = useAuth()
+  const { sidebarData } = SidebarDataComponent()
 
   const userInfo = {
     ...sidebarData.user,

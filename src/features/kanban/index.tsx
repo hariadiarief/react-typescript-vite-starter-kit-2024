@@ -8,6 +8,8 @@ import { useEffect } from 'react'
 import { Link } from 'react-router'
 
 export default function Kanban() {
+  console.log('render: kanban')
+
   const { dispatch } = useKanban()
 
   useEffect(() => {

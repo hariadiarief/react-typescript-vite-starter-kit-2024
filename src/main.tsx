@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router'
 import { AuthProvider } from './context/auth/authContext.tsx'
 import { KanbanProvider } from './context/kanban/kanbanContext.tsx'
 import './index.css'
-import RoutesApp from './router.tsx'
+import { RoutesApp } from './router.tsx'
 
 const queryClient = new QueryClient()
 
