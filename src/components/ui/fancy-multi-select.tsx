@@ -10,10 +10,10 @@ import {
   CommandItem,
   CommandList
 } from '@/components/ui/command'
-import { IkanbanColumnContent } from '@/context/kanban/kanbanTypes'
 import { roles_assignment } from '@/lib/const'
 import { cn } from '@/lib/utils'
 import { Command as CommandPrimitive } from 'cmdk'
+import { CardContent } from '../kanban/model'
 
 type Framework = Record<'value' | 'label', string>
 
@@ -24,7 +24,7 @@ interface IValue {
 
 interface ISelectProps {
   values: IValue[]
-  defaultValues?: IkanbanColumnContent['assignTo']
+  defaultValues?: CardContent['assignTo']
   placeholder: string
   onChange: (selectedValues: string[]) => void
   className: string

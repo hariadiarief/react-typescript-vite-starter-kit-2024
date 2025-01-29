@@ -1,7 +1,7 @@
-import { IStateKanban } from '@/context/kanban/kanbanTypes'
+import { KanbanContent } from './model'
 
 // TODO: Move this in the future outside the kanban component folder
-export const mockData: IStateKanban = {
+export const mockData: KanbanContent = {
   columns: [
     {
       id: 1,

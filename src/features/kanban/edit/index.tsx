@@ -1,4 +1,5 @@
 import { loadKanbanContent } from '@/components/kanban/api'
+import { Column } from '@/components/kanban/model'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import {
@@ -22,7 +23,6 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useKanban } from '@/context/kanban/kanbanContext'
-import { IkanbanColumns } from '@/context/kanban/kanbanTypes'
 import { roles_assignment } from '@/lib/const'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect, useState } from 'react'
@@ -44,9 +44,7 @@ export default function EditKanban() {
   const { id } = useParams()
   const { state, dispatch } = useKanban()
 
-  const [selectedColumn, setselectedColumn] = useState<IkanbanColumns | null>(
-    null
-  )
+  const [selectedColumn, setselectedColumn] = useState<Column | null>(null)
 
   useEffect(() => {
     loadKanbanContent().then(content => {
@@ -121,7 +119,7 @@ export default function EditKanban() {
     }
 
     dispatch({ type: 'update-kanban', payload })
-    navigate('/')
+    navigate(`/kanban/detail/${id}`)
   }
 
   const DeleteTask = () => {

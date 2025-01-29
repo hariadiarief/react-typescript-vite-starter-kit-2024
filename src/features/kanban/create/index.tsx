@@ -65,7 +65,7 @@ export default function CreateKanban() {
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     dispatch({ type: 'add-kanban', payload: data })
-    navigate('/')
+    navigate('/kanban')
   }
   return (
     <Form {...form}>

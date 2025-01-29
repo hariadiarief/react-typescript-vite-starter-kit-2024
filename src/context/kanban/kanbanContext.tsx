@@ -1,11 +1,12 @@
 'use client'
 
+import { KanbanContent } from '@/components/kanban/model'
 import React, { ReactNode, createContext, useContext, useReducer } from 'react'
 import { initialState, reducer } from './kanbanReducer'
-import { IActionkanban, IStateKanban } from './kanbanTypes'
+import { IActionkanban } from './kanbanTypes'
 
 interface ContextProps {
-  state: IStateKanban
+  state: KanbanContent
   dispatch: React.Dispatch<IActionkanban>
 }
 

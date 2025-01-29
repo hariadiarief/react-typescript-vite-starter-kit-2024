@@ -1,10 +1,11 @@
-import { IActionkanban, IStateKanban } from './kanbanTypes'
+import { KanbanContent } from '@/components/kanban/model'
+import { IActionkanban } from './kanbanTypes'
 
-export const initialState: IStateKanban = {
+export const initialState: KanbanContent = {
   columns: []
 }
 
-export const reducer = (state: IStateKanban, action: IActionkanban) => {
+export const reducer = (state: KanbanContent, action: IActionkanban) => {
   switch (action.type) {
     case 'update-kanban':
       localStorage.setItem('mockData', JSON.stringify(action.payload))

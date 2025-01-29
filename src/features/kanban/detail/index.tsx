@@ -1,8 +1,8 @@
 import { loadKanbanContent } from '@/components/kanban/api'
+import { CardContent } from '@/components/kanban/model'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { useKanban } from '@/context/kanban/kanbanContext'
-import { IkanbanColumnContent } from '@/context/kanban/kanbanTypes'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
@@ -11,7 +11,7 @@ export default function DetailKanban() {
   const { id } = useParams()
   const { state, dispatch } = useKanban()
 
-  const [form, setForm] = useState<IkanbanColumnContent>({
+  const [form, setForm] = useState<CardContent>({
     id: Number(id),
     title: '',
     description: '',
