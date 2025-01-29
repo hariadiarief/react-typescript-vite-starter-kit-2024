@@ -1,6 +1,7 @@
 import {
   AlignStartHorizontal,
   Command,
+  CreditCardIcon,
   LayoutDashboardIcon
 } from 'lucide-react'
 import { type SidebarData } from '../types'
@@ -24,6 +25,11 @@ export const sidebarData: SidebarData = {
           title: 'Post',
           url: '/',
           icon: LayoutDashboardIcon
+        },
+        {
+          title: 'Payment',
+          url: '/payment',
+          icon: CreditCardIcon
         },
         {
           title: 'Kanban',

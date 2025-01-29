@@ -7,6 +7,7 @@ import Kanban from './features/kanban'
 import CreateKanban from './features/kanban/create'
 import DetailKanban from './features/kanban/detail'
 import EditKanban from './features/kanban/edit'
+import { Payments } from './features/payment'
 import Post from './features/posts'
 import PostDetail from './features/posts/detail'
 
@@ -25,6 +26,10 @@ export default function RoutesApp() {
         {
           path: '/post/:postId',
           element: <PostDetail />
+        },
+        {
+          path: '/payment',
+          element: <Payments />
         },
         {
           path: '/kanban',

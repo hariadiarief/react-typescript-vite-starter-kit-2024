@@ -1,5 +1,15 @@
 // import { Button } from '@/components/ui/button'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
+} from '@/components/ui/table'
+import { ArrowUpDownIcon, EyeIcon } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router'
 
@@ -51,45 +61,60 @@ export default function Post() {
   if (!posts.length) return
 
   return (
-    <div>
-      <h1 className='text-2xl'>home</h1>
-      <input
+    <div className=''>
+      <h3 className='text-2xl font-bold tracking-tight'>Posts</h3>
+
+      <Input
+        placeholder='Filter Title...'
         type='text'
         value={keyword}
         onChange={e => setKeyword(e.target.value)}
+        className='mb-2 max-w-sm'
       />
-      <select
-        name='sort'
-        id='sort'
-        onChange={e => setSort(Number(e.target.value))}
-      >
-        <option value={SORT_ASC}>Ascending</option>
-        <option value={SORT_DSC}>Descending</option>
-      </select>
+      <div className='mb-4'>
+        <div className='text-muted-foreground'>filter : {keyword}</div>
+        <div className='text-muted-foreground'>
+          debounced filter : {debouncedKeyword}
+        </div>
+      </div>
 
-      <div>keyword : {keyword}</div>
-      <div>debouncedKeyword : {debouncedKeyword}</div>
-      <table>
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>Title</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredAndSortedPosts.map((post: IPost) => (
-            <tr key={post.id}>
-              <td>{post.id}</td>
-              <td>{post.title}</td>
-              <td>
-                <Link to={`/post/${post.id}`}>
-                  <Button>Detail</Button>
-                </Link>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className='rounded-md border'>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className='w-[100px]'>ID</TableHead>
+              <TableHead>
+                <Button
+                  className='p-0'
+                  variant='ghost'
+                  onClick={() =>
+                    setSort(sort === SORT_ASC ? SORT_DSC : SORT_ASC)
+                  }
+                >
+                  <ArrowUpDownIcon />
+                  Title
+                </Button>
+              </TableHead>
+              <TableHead className='text-right'>Action</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {filteredAndSortedPosts.map((post: IPost) => (
+              <TableRow key={post.id}>
+                <TableCell className='font-medium'>{post.id}</TableCell>
+                <TableCell>{post.title}</TableCell>
+                <TableCell className='text-right'>
+                  <Link to={`/post/${post.id}`}>
+                    <Button variant={'outline'}>
+                      <EyeIcon />
+                    </Button>
+                  </Link>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   )
 
