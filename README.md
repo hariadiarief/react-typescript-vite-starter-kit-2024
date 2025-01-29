@@ -1,50 +1,79 @@
-# React + TypeScript + Vite
+# Shadcn Admin Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Admin dashboard starter kit developed with React, Vite, Shadcn etc.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[x] Responsive Web Design
 
-## Expanding the ESLint configuration
+[x] Auto generated sidebar menu from react-router's routes
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+[x] Extra custom components
 
-- Configure the top-level `parserOptions` property like this:
+[] WIP : Light/dark mode
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+[] WIP : Global Search Command
+
+## Tech Stack
+
+**Build Tool:** [Vite](https://vitejs.dev/)
+
+**Routing:** [React Router](https://reactrouter.com/)
+
+**Styling:** [ShadcnUI](https://ui.shadcn.com), including [TailwindCSS](https://tailwindcss.com/) and [RadixUI](https://www.radix-ui.com/)
+
+**Utility Tool:**
+
+- [TypeScript](https://www.typescriptlang.org/)
+- [React Hook Form](https://react-hook-form.com/)
+- [Zod](https://zod.dev/)
+- [Husky](https://github.com/typicode/husky)
+- [lint-staged](https://github.com/lint-staged/lint-staged)
+- [Eslint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- [Lucide](https://lucide.dev/)
+
+## Setup
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- [Node.js](https://nodejs.org/) (v22.x)
+- [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/)
+
+### Installation
+
+Clone the project
+
+1. Clone this repository:
+
+   ```bash
+     git clone https://github.com/hariadiarief/react-vite-shadcn-dashboard-starter-kit.git
+   ```
+
+2. Go to the project directory
+
+   ```bash
+     cd react-vite-shadcn-dashboard-starter-kit
+   ```
+
+3. Install the dependencies:
+
+   ```bash
+     npm install
+   ```
+
+### Development
+
+To start the development server, run:
+
+```bash
+  yarn dev
+  # or
+  npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## License
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Licensed under the [MIT License](https://choosealicense.com/licenses/mit/)

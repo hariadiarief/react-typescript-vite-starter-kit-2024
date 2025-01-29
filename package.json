@@ -1,7 +1,7 @@
 {
-  "name": "react-typescript-vite-starter-kit-2024",
+  "name": "react-vite-shadcn-dashboard-starter-kit",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
