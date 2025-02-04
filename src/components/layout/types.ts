@@ -1,4 +1,4 @@
-import { LinkProps } from 'react-router'
+import { LucideIcon } from 'lucide-react'
 
 interface User {
   name: string
@@ -15,24 +15,25 @@ interface App {
 interface BaseNavItem {
   title: string
   badge?: string
-  icon?: React.ElementType
+  icon?: LucideIcon
+  hide?: boolean
 }
 
 type NavLink = BaseNavItem & {
-  url: LinkProps['to']
-  items?: never
+  path: string
+  children?: never
 }
 
 type NavCollapsible = BaseNavItem & {
-  items: (BaseNavItem & { url: LinkProps['to'] })[]
-  url?: never
+  children: (BaseNavItem & { path: string })[]
+  path?: never
 }
 
 type NavItem = NavCollapsible | NavLink
 
 interface NavGroup {
   title: string
-  items: NavItem[]
+  children: NavItem[]
 }
 
 interface SidebarData {

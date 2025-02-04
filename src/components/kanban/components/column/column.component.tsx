@@ -16,7 +16,7 @@ export const Column: React.FC<Props> = props => {
   return (
     <div
       // className={classes.container}
-      className='flex min-h-screen flex-col gap-2 rounded-md bg-slate-200 p-2'
+      className='flex min-h-screen flex-col gap-2 rounded-md bg-accent p-2'
     >
       <h4 className='min-w-[300px] text-center font-bold'>{name}</h4>
       {content.map(card => (

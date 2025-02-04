@@ -28,7 +28,7 @@ import {
 } from '../ui/dropdown-menu'
 import { NavCollapsible, NavItem, NavLink, type NavGroup } from './types'
 
-export function NavGroup({ title, items }: NavGroup) {
+export function NavGroup({ title, children }: NavGroup) {
   const { state } = useSidebar()
   const { pathname } = useLocation()
 
@@ -36,10 +36,10 @@ export function NavGroup({ title, items }: NavGroup) {
     <SidebarGroup>
       <SidebarGroupLabel>{title}</SidebarGroupLabel>
       <SidebarMenu>
-        {items.map(item => {
-          const key = `${item.title}-${item.url}`
+        {children.map(item => {
+          const key = `${item.title}-${item.path}`
 
-          if (!item.items)
+          if (!item.children)
             return <SidebarMenuLink key={key} item={item} href={pathname} />
 
           if (state === 'collapsed')
@@ -73,7 +73,7 @@ const SidebarMenuLink = ({ item, href }: { item: NavLink; href: string }) => {
         isActive={checkIsActive(href, item)}
         tooltip={item.title}
       >
-        <Link to={item.url} onClick={() => setOpenMobile(false)}>
+        <Link to={item.path} onClick={() => setOpenMobile(false)}>
           {item.icon && <item.icon />}
           <span>{item.title}</span>
           {item.badge && <NavBadge>{item.badge}</NavBadge>}
@@ -108,13 +108,13 @@ const SidebarMenuCollapsible = ({
         </CollapsibleTrigger>
         <CollapsibleContent className='CollapsibleContent'>
           <SidebarMenuSub>
-            {item.items.map(subItem => (
+            {item.children.map(subItem => (
               <SidebarMenuSubItem key={subItem.title}>
                 <SidebarMenuSubButton
                   asChild
                   isActive={checkIsActive(href, subItem)}
                 >
-                  <Link to={subItem.url} onClick={() => setOpenMobile(false)}>
+                  <Link to={subItem.path} onClick={() => setOpenMobile(false)}>
                     {subItem.icon && <subItem.icon />}
                     <span>{subItem.title}</span>
                     {subItem.badge && <NavBadge>{subItem.badge}</NavBadge>}
@@ -155,10 +155,10 @@ const SidebarMenuCollapsedDropdown = ({
             {item.title} {item.badge ? `(${item.badge})` : ''}
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          {item.items.map(sub => (
-            <DropdownMenuItem key={`${sub.title}-${sub.url}`} asChild>
+          {item.children.map(sub => (
+            <DropdownMenuItem key={`${sub.title}-${sub.path}`} asChild>
               <Link
-                to={sub.url}
+                to={sub.path}
                 className={`${checkIsActive(href, sub) ? 'bg-secondary' : ''}`}
               >
                 {sub.icon && <sub.icon />}
@@ -177,9 +177,9 @@ const SidebarMenuCollapsedDropdown = ({
 
 function checkIsActive(href: string, item: NavItem, mainNav = false) {
   return (
-    href === item.url || // /endpint?search=param
-    href.split('?')[0] === item.url || // endpoint
-    !!item?.items?.filter(i => i.url === href).length || // if child nav is active
+    href === item.path || // /endpint?search=param
+    href.split('?')[0] === item.path || // endpoint
+    !!item?.children?.filter(i => i.path === href).length || // if child nav is active
     (mainNav && href.split('/')[1] !== '')
   )
 }

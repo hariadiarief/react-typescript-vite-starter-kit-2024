@@ -5,6 +5,9 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
   SidebarRail
 } from '@/components/ui/sidebar'
 import { useAuth } from '@/context/auth/authContext'
@@ -23,17 +26,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible='icon' variant='floating' {...props}>
       <SidebarHeader>
-        <div className='flex pt-2'>
-          <div className='flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground'>
-            <sidebarData.app.logo className='size-4' />
-          </div>
-          <div className='ml-2 grid flex-1 text-left text-sm leading-tight'>
-            <span className='truncate font-semibold'>
-              {sidebarData.app.name}
-            </span>
-            <span className='truncate text-xs'>{sidebarData.app.plan}</span>
-          </div>
-        </div>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton size='lg'>
+              <div className='flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground'>
+                <sidebarData.app.logo className='size-4' />
+              </div>
+              <div className='grid flex-1 text-left text-sm leading-tight'>
+                <span className='truncate font-semibold'>
+                  {sidebarData.app.name}
+                </span>
+                <span className='truncate text-xs'>{sidebarData.app.plan}</span>
+              </div>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
         {sidebarData.navGroups.map(props => (
