@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router'
 import { AuthProvider } from './context/auth/authContext.tsx'
 import { KanbanProvider } from './context/kanban/kanbanContext.tsx'
+import { ThemeProvider } from './context/theme-context.tsx'
 import './index.css'
 import { RoutesApp } from './router.tsx'
 
@@ -14,9 +15,11 @@ createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <KanbanProvider>
-          <BrowserRouter>
-            <RoutesApp />
-          </BrowserRouter>
+          <ThemeProvider>
+            <BrowserRouter>
+              <RoutesApp />
+            </BrowserRouter>
+          </ThemeProvider>
         </KanbanProvider>
       </AuthProvider>
     </QueryClientProvider>

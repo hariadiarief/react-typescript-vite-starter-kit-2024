@@ -1,47 +1,35 @@
 import { DashboardMenu } from '@/router'
 import { Command } from 'lucide-react'
-import { NavGroup, type SidebarData } from '../types'
+import { NavGroup, NavItem, type SidebarData } from '../types'
 
 interface ISidebarDataComponent {
   sidebarData: SidebarData
 }
 
-interface Route {
-  title: string
-  path?: string
-  hide?: boolean
-  children?: Route[]
-}
-
-interface NavLink {
-  title: string
-  url: string
-}
-
-type NavGroups = NavGroup[]
-
 export const SidebarDataComponent = (): ISidebarDataComponent => {
-  const { routes } = DashboardMenu()
+  const routes = DashboardMenu()
   console.log({ routes })
 
-  const mapRoutesToNav = (routes: Route[]): NavGroups => {
-    return routes
-      .filter(({ hide }) => !hide)
-      .map(({ title, path, children }) => {
-        if (children) {
-          return {
-            title,
-            items: mapRoutesToNav(children)
-          }
-        }
-        return {
-          title,
-          url: path!
-        } as NavLink
-      }) as NavGroups
-  }
+  type NavGroups = NavGroup[]
 
-  const mappedNav: NavGroups = mapRoutesToNav(routes)
+  function removeHiddenItems(navGroups: NavGroups): NavGroups {
+    function filterItems(items: NavItem[]): NavItem[] {
+      return items
+        .map(item => {
+          if (item?.children) {
+            const filteredChildren = filterItems(item.children)
+            return { ...item, children: filteredChildren }
+          }
+          return item
+        })
+        .filter(item => !item.hide) as NavItem[]
+    }
+
+    return navGroups.map(group => ({
+      ...group,
+      children: filterItems(group.children)
+    }))
+  }
 
   return {
     sidebarData: {
@@ -51,11 +39,11 @@ export const SidebarDataComponent = (): ISidebarDataComponent => {
         avatar: '/avatars/shadcn.jpg'
       },
       app: {
-        name: 'Kanban Apps',
+        name: 'Dashboard Starter Kit',
         logo: Command,
         plan: 'Vite + ShadcnUI'
       },
-      navGroups: mappedNav
+      navGroups: removeHiddenItems(routes)
     }
   }
 }

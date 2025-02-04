@@ -1,5 +1,11 @@
+import {
+  DollarSignIcon,
+  LayoutDashboardIcon,
+  NewspaperIcon
+} from 'lucide-react'
 import { Navigate, useRoutes } from 'react-router'
 import Layout from './components/layout'
+import { NavGroup } from './components/layout/types'
 import { useAuth } from './context/auth/authContext'
 import Login from './features/authentication/login'
 import Register from './features/authentication/register'
@@ -21,6 +27,7 @@ const privateRoutes = [
         children: [
           {
             title: 'Post',
+            icon: NewspaperIcon,
             children: [
               {
                 title: 'Post List',
@@ -38,10 +45,12 @@ const privateRoutes = [
           {
             title: 'Payment',
             path: '/payment',
+            icon: DollarSignIcon,
             element: <Payments />
           },
           {
             title: 'Kanban',
+            icon: LayoutDashboardIcon,
             children: [
               {
                 title: 'Kanban ',
@@ -85,10 +94,8 @@ const publicRoutes = [
   { path: '*', element: <Navigate to='/' replace /> }
 ]
 
-export const DashboardMenu = () => {
-  return {
-    routes: privateRoutes[0].children ?? []
-  }
+export const DashboardMenu = (): NavGroup[] => {
+  return privateRoutes[0].children
 }
 
 export const RoutesApp = () => {
